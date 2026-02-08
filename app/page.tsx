@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Droplets, Recycle, Filter, Zap, Users, Award, Headphones, Star } from "lucide-react"
+import { projects } from "./projects/data"
 
 export default function HomePage() {
   return (
@@ -14,7 +15,7 @@ export default function HomePage() {
         className="relative h-screen flex items-center justify-center text-center text-white"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/placeholder.svg?height=800&width=1200')",
+            "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/hero_section.png?height=800&width=1200')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -25,16 +26,20 @@ export default function HomePage() {
           </h1>
           <p className="text-xl mb-8 max-w-2xl mx-auto">STP • ETP • UF • RO | Turnkey Design, Build & Support</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 px-8 py-3 rounded-full">
-              View Our Solutions
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-black px-8 py-3 rounded-full"
-            >
-              Get a Quote
-            </Button>
+            <Link href="/quote">
+              <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                Get a Quote
+              </Button>
+            </Link>
+            <Link href="/services">
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-transparent border-white text-white hover:bg-white hover:text-emerald-900 px-8 py-3 rounded-full transition-colors"
+              >
+                View Our Solutions
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -137,50 +142,25 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=200&width=400"
-                alt="Project Alpha"
-                width={400}
-                height={200}
-                className="w-full h-48 object-cover"
-              />
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Project Alpha</h3>
-                <p className="text-gray-600 mb-4">Advanced water treatment system for industrial complex.</p>
-                <Button className="w-full bg-emerald-500 hover:bg-emerald-600">Read Case Study</Button>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=200&width=400"
-                alt="Project Beta"
-                width={400}
-                height={200}
-                className="w-full h-48 object-cover"
-              />
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Project Beta</h3>
-                <p className="text-gray-600 mb-4">Large-scale municipal wastewater treatment facility.</p>
-                <Button className="w-full bg-emerald-500 hover:bg-emerald-600">Read Case Study</Button>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=200&width=400"
-                alt="Project Gamma"
-                width={400}
-                height={200}
-                className="w-full h-48 object-cover"
-              />
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Project Gamma</h3>
-                <p className="text-gray-600 mb-4">Sustainable water recycling solution for manufacturing plant.</p>
-                <Button className="w-full bg-emerald-500 hover:bg-emerald-600">Read Case Study</Button>
-              </CardContent>
-            </Card>
+            {projects.slice(0, 3).map((project, index) => (
+              <Card key={index} className="overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <Image
+                  src={project.image || "/placeholder.svg"}
+                  alt={project.title}
+                  width={400}
+                  height={200}
+                  className="w-full h-48 object-cover"
+                />
+                <CardContent className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-xl font-semibold mb-2 line-clamp-1">{project.title}</h3>
+                  <p className="text-sm font-bold text-emerald-700 mb-2 uppercase tracking-wide">{project.client}</p>
+                  <p className="text-gray-600 mb-4 line-clamp-2 flex-grow">{project.description}</p>
+                  <Link href={`/projects/${project.id}`} className="mt-auto">
+                    <Button className="w-full bg-emerald-500 hover:bg-emerald-600">View Details</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -193,9 +173,34 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-16">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-emerald-100 h-16 rounded-lg flex items-center justify-center">
-                <div className="w-12 h-8 bg-emerald-600 rounded"></div>
+            {[
+              "client_logo_1.jpg",
+              "client_logo_2.png",
+              "client_logo_3.png",
+              "client_logo_4.png",
+              "client_logo_5.png",
+              "client_logo_6.png",
+              "client_logo_7.png",
+              "client_logo_8.png",
+              "client_logo_9.png",
+              "client_logo_10.png",
+              "client_logo_11.png",
+              "client_logo_12.png",
+              "client_logo_13.png",
+              "client_logo_14.png",
+              "client_logo_15.png",
+              "client_logo_16.png",
+              "client_logo_17.png",
+              "client_logo_18.png",
+            ].map((logo, i) => (
+              <div key={i} className="flex items-center justify-center h-24 bg-white p-2 rounded-lg hover:shadow-md transition-shadow">
+                <Image
+                  src={`/client_logos/${logo}`}
+                  alt={`Client Logo ${i + 1}`}
+                  width={100}
+                  height={60}
+                  className="max-w-full max-h-full object-contain"
+                />
               </div>
             ))}
           </div>
@@ -261,7 +266,7 @@ export default function HomePage() {
             </div>
             <div className="bg-yellow-100 p-8 rounded-lg">
               <Image
-                src="/placeholder.svg?height=400&width=400"
+                src="/images/csr.png"
                 alt="Sustainability Report"
                 width={400}
                 height={400}
@@ -295,7 +300,7 @@ export default function HomePage() {
             </Link>
           </div>
           {/* Decorative accent or pattern */}
-          <div className="hidden md:block absolute right-0 bottom-0 w-64 h-64 opacity-20 pointer-events-none" style={{background: 'radial-gradient(circle at 80% 20%, #fff 0%, transparent 70%)'}} />
+          <div className="hidden md:block absolute right-0 bottom-0 w-64 h-64 opacity-20 pointer-events-none" style={{ background: 'radial-gradient(circle at 80% 20%, #fff 0%, transparent 70%)' }} />
         </div>
       </section>
     </div>

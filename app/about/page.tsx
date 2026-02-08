@@ -32,7 +32,7 @@ export default function AboutPage() {
             <Link href="#mission" className="inline-block border border-emerald-600 text-emerald-700 px-6 py-2 rounded-full font-semibold hover:bg-emerald-50 transition">Learn More About Our Mission</Link>
           </div>
           <div className="md:w-1/2 flex justify-center">
-            <Image src="/placeholder.jpg" alt="Deepak Tech India Headquarters" width={400} height={300} className="rounded-lg shadow-lg object-cover" />
+            <Image src="/images/story.png" alt="Deepak Tech India Headquarters" width={400} height={300} className="rounded-lg shadow-lg object-cover" />
           </div>
         </div>
       </section>
@@ -54,7 +54,7 @@ export default function AboutPage() {
             <p className="text-center">Expanded into full ETP & RO manufacturing facility.</p>
           </li>
           <li className="flex flex-col items-center">
-            <span className="year text-2xl font-bold text-emerald-600">2016</span>
+            <span className="year text-2xl font-bold text-emerald-600">2013</span>
             <p className="text-center">Joined Exsys Group, enabling international technology transfers.</p>
           </li>
           <li className="flex flex-col items-center">
@@ -99,7 +99,8 @@ export default function AboutPage() {
             <Image src="/placeholder-user.jpg" alt="Mr. Sudhir Singh Balyan" width={120} height={120} className="mx-auto rounded-full mb-4 object-cover" />
             <h3 className="font-semibold text-xl">Mr. Sudhir Singh Balyan</h3>
             <p className="text-emerald-700 mb-2">Managing Director</p>
-            <div className="bio opacity-0 group-hover:opacity-100 transition bg-white rounded p-4 shadow-lg absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 z-10 text-gray-700">
+            <div className="bio opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 translate-y-2 scale-95 transition-all duration-300 ease-out bg-white/95 backdrop-blur-sm rounded-xl p-5 shadow-2xl border border-emerald-100 absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 z-20 text-gray-600 text-sm leading-relaxed">
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-emerald-100"></div>
               With 28 years in water-treatment design, Sudhir pioneered our MBR-UF hybrid line and leads our R&D group.
             </div>
           </div>
@@ -107,7 +108,8 @@ export default function AboutPage() {
             <Image src="/placeholder-user.jpg" alt="Indu Singh" width={120} height={120} className="mx-auto rounded-full mb-4 object-cover" />
             <h3 className="font-semibold text-xl">Mrs. Indu Singh</h3>
             <p className="text-emerald-700 mb-2">Chief Engineer</p>
-            <div className="bio opacity-0 group-hover:opacity-100 transition bg-white rounded p-4 shadow-lg absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 z-10 text-gray-700">
+            <div className="bio opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 translate-y-2 scale-95 transition-all duration-300 ease-out bg-white/95 backdrop-blur-sm rounded-xl p-5 shadow-2xl border border-emerald-100 absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 z-20 text-gray-600 text-sm leading-relaxed">
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-emerald-100"></div>
               Indu oversees all plant customizations and ensures every system meets performance guarantees.
             </div>
           </div>

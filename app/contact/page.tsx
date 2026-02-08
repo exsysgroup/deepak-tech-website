@@ -1,12 +1,22 @@
+"use client"
+
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Loader2 } from "lucide-react"
+import { useActionState } from "react"
+import { submitContactForm } from "@/actions/contact"
 
 export default function ContactPage() {
+  const [state, action, isPending] = useActionState(submitContactForm, {
+    message: "",
+    errors: {},
+    success: false,
+  })
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -31,29 +41,37 @@ export default function ContactPage() {
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-6 h-6 text-emerald-600 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Deepak Tech India Headquarters</h3>
-                    <p className="text-gray-600">Plot No. 23, Sector 59, Faridabad, Haryana, India</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">Deepak Tech India Head Office</h3>
+                    <p className="text-gray-600">BH-506, 81-High Street, Puri Business Hub, Sector 81, Faridabad, Haryana - 121004</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <MapPin className="w-6 h-6 text-emerald-600 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Works</h3>
+                    <p className="text-gray-600">Plot No. 1, Khedi Enclave, Part-1, Ballabgarh, Sonha Road, Faridabad, Haryana - 121004</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
                   <Phone className="w-6 h-6 text-emerald-600 mt-1" />
                   <div>
-                    <p className="text-gray-600">+91-124-456-7890, +91-987-654-3210</p>
+                    <p className="text-gray-600">+91-9911347782, +91-9810827782</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
                   <Mail className="w-6 h-6 text-emerald-600 mt-1" />
                   <div>
-                    <p className="text-gray-600">info@deepaktech.in, sales@deepaktech.in</p>
+                    <p className="text-gray-600">info@deepaktech.com, admin@deepaktech.com</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
                   <Clock className="w-6 h-6 text-emerald-600 mt-1" />
                   <div>
-                    <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p className="text-gray-600">Monday - Saturday: 9:00 AM - 6:00 PM</p>
                   </div>
                 </div>
               </div>
@@ -61,15 +79,26 @@ export default function ContactPage() {
               {/* Map */}
               <div className="mt-12">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Headquarters Location</h3>
-                <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
+                <Link
+                  href="https://maps.app.goo.gl/exJLTMvD9m2rtgMa8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block bg-gray-200 h-64 rounded-lg overflow-hidden"
+                >
                   <Image
-                    src="/placeholder.svg?height=256&width=400"
+                    src="/images/map.png"
                     alt="Map showing headquarters location"
                     width={400}
                     height={256}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="bg-white text-gray-900 px-4 py-2 rounded-full font-semibold shadow-lg flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-emerald-600" />
+                      View on Google Maps
+                    </span>
                 </div>
+                </Link>
               </div>
             </div>
 
@@ -77,89 +106,79 @@ export default function ContactPage() {
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Inquiry Form</h2>
 
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                  <Input placeholder="Your Name" />
+              {state.success ? (
+                <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 p-6 rounded-lg text-center">
+                  <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+                  <p>{state.message}</p>
                 </div>
+              ) : (
+                <form action={action} className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                    <Input name="name" placeholder="Your Name" required />
+                    {state.errors?.name && <p className="text-sm text-red-500 mt-1">{state.errors.name[0]}</p>}
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Company</label>
-                  <Input placeholder="Your Company" />
-                </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Company</label>
+                    <Input name="company" placeholder="Your Company" />
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                  <Input type="email" placeholder="Your Email" />
-                </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <Input type="email" name="email" placeholder="Your Email" required />
+                    {state.errors?.email && <p className="text-sm text-red-500 mt-1">{state.errors.email[0]}</p>}
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                  <Input placeholder="Your Phone" />
-                </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                    <Input name="phone" placeholder="Your Phone" required />
+                    {state.errors?.phone && <p className="text-sm text-red-500 mt-1">{state.errors.phone[0]}</p>}
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select Subject" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="general">General Inquiry</SelectItem>
-                      <SelectItem value="quote">Request Quote</SelectItem>
-                      <SelectItem value="support">Technical Support</SelectItem>
-                      <SelectItem value="partnership">Partnership</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                    <Select name="subject" required>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Subject" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="general">General Inquiry</SelectItem>
+                        <SelectItem value="quote">Request Quote</SelectItem>
+                        <SelectItem value="support">Technical Support</SelectItem>
+                        <SelectItem value="partnership">Partnership</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {state.errors?.subject && <p className="text-sm text-red-500 mt-1">{state.errors.subject[0]}</p>}
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                  <Textarea placeholder="Your Message" rows={6} />
-                </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                    <Textarea name="message" placeholder="Your Message" rows={6} required />
+                    {state.errors?.message && <p className="text-sm text-red-500 mt-1">{state.errors.message[0]}</p>}
+                  </div>
 
-                <Button className="w-full bg-emerald-500 hover:bg-emerald-600 py-3 rounded-full">Send Message</Button>
-              </form>
+                  <Button
+                    type="submit"
+                    className="w-full bg-emerald-500 hover:bg-emerald-600 py-3 rounded-full"
+                    disabled={isPending}
+                  >
+                    {isPending ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
+                  </Button>
+
+                  {!state.success && state.message && (
+                    <p className="text-sm text-red-500 text-center mt-4">{state.message}</p>
+                  )}
+                </form>
+              )}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Regional Offices */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12">Regional Offices / Service Centers</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Mumbai</h3>
-                <div className="flex items-center space-x-2 text-emerald-600">
-                  <Phone className="w-4 h-4" />
-                  <span>+91-22-1234-5678</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Chennai</h3>
-                <div className="flex items-center space-x-2 text-emerald-600">
-                  <Phone className="w-4 h-4" />
-                  <span>+91-44-9876-5432</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Bangalore</h3>
-                <div className="flex items-center space-x-2 text-emerald-600">
-                  <Phone className="w-4 h-4" />
-                  <span>+91-80-1122-3344</span>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>

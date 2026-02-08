@@ -6,7 +6,7 @@ export default function ROServicePage() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
       {/* Banner */}
-      <section className="relative h-64 md:h-80 flex items-end justify-start bg-cover bg-center" style={{ backgroundImage: "url('/placeholder.svg?height=400&width=1200')" }}>
+      <section className="relative h-64 md:h-80 flex items-end justify-start bg-cover bg-center" style={{ backgroundImage: "url('/images/services/ro.png')" }}>
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end">
           <div className="p-8 md:p-12">
             <h1 className="text-3xl md:text-5xl font-bold text-white flex items-center gap-3">

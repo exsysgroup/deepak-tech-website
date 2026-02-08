@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
@@ -12,9 +13,9 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Products", href: "/products" },
+    // { name: "Products", href: "/products" },
     { name: "Services", href: "/services" },
-    { name: "Industries", href: "/industries" },
+    // { name: "Industries", href: "/industries" },
     { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
   ]
@@ -24,7 +25,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-6 h-6 bg-emerald-500 rounded"></div>
+            <Image
+              src="/Exsys_tp.png"
+              alt="Exsys Group Logo"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-contain"
+            />
             <span className="text-xl font-semibold text-gray-900">Deepak Tech India</span>
           </Link>
 
