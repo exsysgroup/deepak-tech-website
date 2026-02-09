@@ -22,7 +22,7 @@ export default function ProjectsPage() {
             </section>
 
             {/* Filters */}
-            <section className="py-8 bg-white border-b">
+            {/* <section className="py-8 bg-white border-b">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-wrap items-center gap-4">
                         <span className="font-medium text-gray-700">Filter by:</span>
@@ -68,7 +68,7 @@ export default function ProjectsPage() {
                         </Select>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Projects Grid */}
             <section className="py-20">

@@ -298,6 +298,82 @@ function UFModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   )
 }
 
+function ROModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg w-full max-w-3xl mx-4 md:w-4/5 lg:w-3/5 relative overflow-y-auto max-h-[90vh]">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 dark:hover:text-white text-2xl font-bold"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        {/* Header */}
+        <div className="flex items-center gap-4 p-6 border-b border-gray-200 dark:border-gray-700">
+          <Zap className="w-10 h-10 text-emerald-600" />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Reverse Osmosis (RO)</h2>
+            <p className="text-emerald-700 dark:text-emerald-300 text-sm">Advanced membrane desalination for high-purity water (500 LPH – 100 m³/hr).</p>
+          </div>
+        </div>
+        {/* Content */}
+        <div className="p-6 space-y-6">
+          {/* Overview */}
+          <div>
+            <h3 className="font-semibold text-lg mb-2">Overview</h3>
+            <p className="text-gray-700 dark:text-gray-200">
+              Our Reverse Osmosis (RO) systems use semi-permeable membranes to remove up to 99% of dissolved salts, particles, and bacteria from water. Whether for industrial process water, boiler feed, or safe drinking water, these systems are engineered for high recovery, energy efficiency, and long-term reliability.
+            </p>
+          </div>
+          {/* Key Features */}
+          <div>
+            <h3 className="font-semibold text-lg mb-2">Key Features</h3>
+            <ul className="list-disc pl-6 text-gray-700 dark:text-gray-200 space-y-1">
+              <li>High-Performance Membranes: Using top-tier components for maximum salt rejection and permeate quality</li>
+              <li>Energy-Efficient Operation: High-pressure pumps with optional energy recovery devices</li>
+              <li>Comprehensive Pretreatment: Sand filtration, carbon filtration, and softening/anti-scalant dosing to protect membranes</li>
+              <li>Smart Automation: PLC-SCADA based control for fully automatic operation and monitoring</li>
+              <li>Clean-In-Place (CIP): Integrated skids for easy membrane maintenance and longevity</li>
+              <li>Robust Skid Assembly: Stainless steel frame with high-pressure piping for durability</li>
+            </ul>
+          </div>
+          {/* Technical Specs */}
+          <div>
+            <h3 className="font-semibold text-lg mb-2">Technical Specs Snapshot</h3>
+            <ul className="text-gray-700 dark:text-gray-200">
+              <li><b>Capacity:</b> 500 LPH → 100 m³/hr</li>
+              <li><b>Salt Rejection:</b> &gt; 99%</li>
+              <li><b>Recovery:</b> 50% – 85% (depending on feed TDS)</li>
+              <li><b>Operating Pressure:</b> 10 – 25 bar (Brackish); 60 bar (Sea Water)</li>
+            </ul>
+          </div>
+          {/* Process Flow */}
+          <div>
+            <h3 className="font-semibold text-lg mb-2">Our 5-Step RO Delivery Process</h3>
+            <ol className="list-decimal pl-6 text-gray-700 dark:text-gray-200 space-y-1">
+              <li>Water Analysis & Projection – Detailed feed water testing and membrane projection software simulation</li>
+              <li>System Design & Engineering – Custom skid layout, pump selection, and membrane array configuration</li>
+              <li>Manufacturing & Assembly – Precision fabrication of stainless steel skids and high-pressure piping</li>
+              <li>Installation & Commissioning – Site erection, membrane loading, and performance validation</li>
+              <li>Service & AMC – Routine membrane cleaning, anti-scalant supply, and performance monitoring</li>
+            </ol>
+          </div>
+          {/* Actions */}
+          <div className="flex flex-col md:flex-row gap-4 justify-end items-center pt-2">
+            <Link href="/services/ro" className="text-emerald-700 dark:text-emerald-300 underline">Read Full Details</Link>
+            <Link href="/quote">
+              <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">Request a Quote for RO</Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function SkidModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   if (!open) return null
   return (
@@ -510,6 +586,7 @@ export default function ServicesPage() {
   const [showSTPModal, setShowSTPModal] = useState(false)
   const [showETPModal, setShowETPModal] = useState(false)
   const [showUFModal, setShowUFModal] = useState(false)
+  const [showROModal, setShowROModal] = useState(false)
   const [showSkidModal, setShowSkidModal] = useState(false)
   const [showCustomEngModal, setShowCustomEngModal] = useState(false)
   return (
@@ -563,7 +640,7 @@ export default function ServicesPage() {
               </div>
               <h3 className="text-xl font-semibold mb-4">Reverse Osmosis (RO)</h3>
               <p className="text-gray-600 mb-6">Reliable reverse osmosis technology for pure and safe water.</p>
-              <Button variant="link" className="text-emerald-600 hover:text-emerald-700">
+              <Button variant="link" className="text-emerald-600 hover:text-emerald-700" onClick={() => setShowROModal(true)}>
                 Learn More →
               </Button>
             </Card>
@@ -595,6 +672,8 @@ export default function ServicesPage() {
         <ETPModal open={showETPModal} onClose={() => setShowETPModal(false)} />
         {/* UF Modal */}
         <UFModal open={showUFModal} onClose={() => setShowUFModal(false)} />
+        {/* RO Modal */}
+        <ROModal open={showROModal} onClose={() => setShowROModal(false)} />
         {/* Skid Modal */}
         <SkidModal open={showSkidModal} onClose={() => setShowSkidModal(false)} />
         {/* Custom Eng Modal */}

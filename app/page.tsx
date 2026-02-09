@@ -169,7 +169,7 @@ export default function HomePage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Testimonials & Client Logos</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Clients & Testimonials</h2>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-16">
@@ -214,14 +214,14 @@ export default function HomePage() {
               </div>
               <p className="text-gray-600 mb-4 italic">"Exceptional Service and Expertise"</p>
               <p className="text-gray-600 mb-4">
-                Deepak Tech India delivered a water treatment solution that exceeded our expectations. Their team's
+                Deepak Tech India delivered a water treatment solution with maximum utilization of water. Their team's
                 professionalism and expertise in world-class workmanship.
               </p>
               <div className="flex items-center">
                 <div className="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
                 <div>
-                  <p className="font-semibold">Rajesh Gupta</p>
-                  <p className="text-sm text-gray-500">Plant Manager</p>
+                  <p className="font-semibold">Aditiya Rana</p>
+                  <p className="text-sm text-gray-500">Head - Opeartions (Artemis Hospital)</p>
                 </div>
               </div>
             </Card>
@@ -240,8 +240,8 @@ export default function HomePage() {
               <div className="flex items-center">
                 <div className="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
                 <div>
-                  <p className="font-semibold">Priya Sharma</p>
-                  <p className="text-sm text-gray-500">Environmental Officer</p>
+                  <p className="font-semibold">Mukesh Upadhyay</p>
+                  <p className="text-sm text-gray-500">Maintenance Head (AG Group)</p>
                 </div>
               </div>
             </Card>
